@@ -1,0 +1,20 @@
+{% extends 'allBuhlo/index.html'%}
+
+{% load staticfiles %}
+{% block content %}
+	
+    <h1>{{ detail.title}}</h1>    <p> {{ detail.author}}</p>
+    {% if detail.publish_date %}
+        <div class="date">
+            {{ post.publish_date }}
+        </div>
+    {% endif %}
+    <p> <img src="{% static detail.image.url%}"/></p>
+    <p> Ингридиетны:<br/>
+    <ul>
+    {% for ingridient in ingrs %}
+    	<li>{{ingridient.litr}}{{ingridient.ingname}}</li>
+    {%endfor%}
+	</ul>
+    <p> {{ detail.content|linebreaks}}</p>
+{% endblock %}

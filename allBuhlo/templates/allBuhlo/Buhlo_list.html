@@ -1,0 +1,31 @@
+{% extends 'allBuhlo/index.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+	{% for post in alch %}
+		<div class="PostBuhlo">
+			<h1><a href="{% url 'allBuhlo.views.buhlo_detail' pk=post.pk name=post.titleReplacing %}">{{ post.title }}</a></h1>
+        	<p>published: {{ post.publish_date }} Author: {{post.author}}</p>
+        	<p>{{ post.content|linebreaks }}</p>
+        	<img src ="{% static post.image.url%}"/>
+        	<p><a href="{% url 'allBuhlo.views.buhlo_detail' pk=post.pk name=post.titleReplacing %}">Подробнее▒</a></p>
+		</div>
+	{%endfor%}
+
+	<div class="pagination">
+    	<span class="step-links">
+        	{% if alch.has_previous %}
+            	<a href="?page={{ alch.previous_page_number }}">Преведущая</a>
+        	{% endif %}
+
+        	<span class="current">
+            	Страница {{ alch.number }} из {{ alch.paginator.num_pages }}.
+        	</span>
+
+        	{% if alch.has_next %}
+            	<a href="?page={{ alch.next_page_number }}">Следующая</a>
+        	{% endif %}
+    	</span>
+	</div>
+{% endblock content%}

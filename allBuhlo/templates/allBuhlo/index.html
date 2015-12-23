@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/chosen.css"%}">
+<script type="text/javascript" src="{% static "js/jquery.js"%}"></script>
+<script type="text/javascript" src="{% static "js/chosen.jquery.js"%}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
+<script type="text/javascript" src="{% static "js/multi.js"%}"></script>
+
+<title>TimeToDrink</title>
+</head>
+<body>
+	<!--Селекторо по имени--> 
+	<form method="get"  action="/searchname">
+		<input type ="text" name="choicenames">
+		<button type="submit"></button>
+	</form>
+	<!-- Селектор по ключу-->
+	<form method="get"  action="/search">
+		<select class="chosen-select" multiple="multiple" name="choice">
+		{%for ingrs in choices%}
+		<option value="{{ingrs.id}}">{{ingrs.name}}</option>
+		{%endfor%}
+	</select>
+	<button type="submit"></button>
+	</form>
+
+{% block content %}
+{%endblock%}
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'allBuhlo/index.html' %}
+{% block content %}
+	{% for post in Alcholist %}
+		<div class="PostBuhlo">
+        	<p>published: {{ post.publish_date }}</p>
+        	<h1><a href="">{{ post.title }}</a></h1>
+        	<p>{{ post.content|linebreaks }}</p>
+        	<img src ="{% static post.image.url%}"/>
+		</div>
+ {% endblock content %}
